@@ -4,6 +4,9 @@ DOT_D="${HOME}/dotfiles"
 
 for f in .??*
 do
+  ["$f" = ".git"] && continue
+  ["$f" = ".gitconfig.local.template"]
+
   ln -snfv ${DOT_D}/${f} ${HOME}
 done
 
