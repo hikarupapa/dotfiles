@@ -314,6 +314,7 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR
 " For mouse
 set mouse=a
 set ttymouse=xterm2
+"set ttymouse=sgr
 " クリップボード
 set clipboard=unnamedplus,autoselect
 " WSL用クリップボード設定

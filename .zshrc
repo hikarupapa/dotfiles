@@ -67,7 +67,7 @@ bindkey '^[[Z' undo                                             # Shift+tab undo
 ## Alias section 
 alias cp="cp -i"                                                # Confirm before overwriting something
 alias df='df -h'                                                # Human-readable sizes
-alias free='free -m'                                            # Show sizes in MB
+#alias free='free -m'                                            # Show sizes in MB
 alias gitu='git add . && git commit && git push'
 ## My alias
 alias ls='ls -F --color=auto'
@@ -81,6 +81,10 @@ alias mountDONGOM='sudo mount -t drvfs -o username=hikaru,password=HIK1pika,uid=
 alias mountDONGOP='sudo mount -t drvfs -o username=hikaru,password=HIK1pika,uid=hikaru,gid=users \\\\DONGO2020\\Public /mnt/DONGO/Public'
 alias mountDONGOW='sudo mount -t drvfs -o username=hikaru,password=HIK1pika,uid=hikaru,gid=users \\\\DONGO2020\\Web /mnt/DONGO/Web'
 # alias rsyncHOME='rsync -arv --exclude='.cache' --exclude='Downloads/WORK/' --exclude='Downloads/GET/' --delete /home/hikaru/ hikaru@DONGO2020:/share/Download/_tmp/hikaru/'
+alias cdd='cd ~/Documents'
+alias cdp='cd ~/Public'
+alias cdl='cd ~/Downloads'
+alias cdt='cd ~/Templates'
 
 ## alias sudo+'sudo -E'
 
@@ -229,14 +233,14 @@ setopt correct
 export PATH="~/lbin:$PATH"
 export XDG_CONFIG_HOME=~/.config
 ##For color less
-export LESS=-R
-export LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink
-export LESS_TERMCAP_md=$'\E[1;36m'     # begin bold
-export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
-export LESS_TERMCAP_so=$'\E[01;44;33m' # begin reverse video
-export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
-export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
-export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
+#export LESS=-R
+#export LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink
+#export LESS_TERMCAP_md=$'\E[1;36m'     # begin bold
+#export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
+#export LESS_TERMCAP_so=$'\E[01;44;33m' # begin reverse video
+#export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
+#export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
+#export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 # and so on
 #export LESSOPEN='| /usr/bin/src-hilite-lesspipe.sh %s'
 
@@ -244,6 +248,10 @@ export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 #export GTK_IM_MODULE=fcitx
 #export XMODIFIRES=@im=fcitx
 #export QT_IM_MODULE=fcitx
+
+## For Ruby
+export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
+export PATH="$PATH:$GEM_HOME/bin"
 
 ### prompt #######
 ## default
@@ -296,7 +304,20 @@ export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 #             [ \( -f $i -o -h $i \) -a -r $i ] && . $i
 #     done
 # fi 
+
+#### Myfunc
+
+mem_percentage(){
+  free | grep Mem |awk '{printf "%5.2f\n",$3/$2*100}'
+}
+
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+PATH="/home/hikaru/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/hikaru/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/hikaru/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/hikaru/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/hikaru/perl5"; export PERL_MM_OPT;
