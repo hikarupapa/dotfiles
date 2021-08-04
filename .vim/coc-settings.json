@@ -1,0 +1,47 @@
+{
+  "coc.preferences.formatOnType": true,
+  "languageserver": {
+    "ccls": {
+      "command": "ccls",
+      "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
+      "rootPatterns": [".ccls-root", "compile_commands.json"],
+      "initializationOptions": {
+        "cache": {
+          "directory": "/home/hikaru/.cache/ccls"
+        },
+        "client": {
+          "snippetSupport": true
+        }
+      }
+    },
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod"],
+      "disableWorkspaceFolders": true,
+      "filetypes": ["go"]
+    },
+    "intelephense": {
+    "command": "intelephense",
+    "args": ["--stdio"],
+    "filetypes": ["php"],
+    "initializationOptions": {
+      "storagePath": "/tmp/intelephense"
+    }
+    },
+    "phplang": {
+    "command": "php",
+    "args": ["/path/to/vendor/felixfbecker/language-server/bin/php-language-server.php"],
+    "filetypes": ["php"]
+    },
+    "psalmls": {
+    "command": "vendor/bin/psalm-language-server",
+    "filetypes": ["php"],
+    "rootPatterns": ["psalm.xml", "psalm.xml.dist"],
+    "requireRootPattern": true
+    },
+    "lua": {
+    "command": "lua-lsp",
+    "filetypes": ["lua"]
+    }
+  }
+}

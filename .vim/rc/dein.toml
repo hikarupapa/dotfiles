@@ -1,0 +1,86 @@
+# Required:
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'vim-jp/vimdoc-ja'
+
+[[plugins]]
+repo = 'lambdalisue/fern.vim'
+
+[[plugins]]
+repo = 'lambdalisue/nerdfont.vim'
+hook_add = '''
+let g:fern#renderer = "nerdfont"
+'''
+
+[[plugins]]
+repo = 'lambdalisue/fern-renderer-nerdfont.vim'
+
+[[plugins]] # カラースキーマ
+#repo = 'w0ng/vim-hybrid'
+repo = 'cocopon/iceberg.vim'
+hook_add = '''
+  set background=dark
+  " colorscheme 設定は source 後に行う必要があるので VimEnter で行う。
+  " 但し Colorscheme イベントの発生が抑制されないよう nented を付ける。
+  au MyAutoCmd VimEnter * nested colorscheme iceberg
+  syntax enable
+'''
+
+[[plugins]]
+repo = 'Shougo/denite.nvim'
+hook_add = '''
+  nnoremap <silent> <space>fr :<C-u>Denite file_mru<CR>
+  nnoremap <silent> <space>fb :<C-u>Denite buffer<CR>
+  nnoremap <silent> <space>fy :<C-u>Denite neoyank<CR>
+  nnoremap <silent> <space>ff :<C-u>Denite file_rec<CR>
+  nnoremap <silent> <space>fu :<C-u>Denite outline<CR>
+'''
+
+[[plugins]]
+repo = 'neoclide/coc.nvim'
+on_event = 'InsertEnter'
+if = '''executable('node') && executable('yarn')'''
+build = './install.sh nightly'
+merged = '0'
+rev = 'release'
+
+[[plugins]]
+repo='josa42/vim-lightline-coc'
+
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+hook_add = '''
+let g:lightline = {
+      \ 'colorscheme': 'Tomorrow_Night_Blue',
+      \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+      \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3"},
+      \ 'active': {
+      \     'left': [['mode', 'paste'],
+      \              ['gitbranch', 'readonly', 'filename', 'modified'],
+      \              [  'coc_info', 'coc_hints','coc_errors', 'coc_warnings', 'coc_ok' ],
+      \              [ 'coc_status'  ]],
+      \     'right': [['syntastic','lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype']]
+      \ },
+      \ 'component_expand': {
+      \   'syntastic': 'SyntasticStatuslineFlag'
+      \ },
+      \ 'component_type': {
+      \   'syntastic': 'error'
+      \ },
+      \ 'component_function': {
+      \     'gitbranch': 'gina#component#repo#branch',
+      \     'mode': 'LightlineMode',
+      \     'cocstatus': 'coc#status',
+      \     'currentfunction': 'CocCurrentFunction'
+      \ }
+      \ }
+
+function! LightlineMode()
+    return &ft == 'denite' ? 'Denite' :
+      \    &ft == 'vimfiler' ? 'VimFiler' :
+      \    winwidth(0) > 60 ? lightline#mode() : ''
+endfunction
+call lightline#coc#register()
+'''

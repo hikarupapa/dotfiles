@@ -85,6 +85,7 @@ alias cdd='cd ~/Documents'
 alias cdp='cd ~/Public'
 alias cdl='cd ~/Downloads'
 alias cdt='cd ~/Templates'
+alias cdot='cd ~/dotfiles'
 
 ## alias sudo+'sudo -E'
 
