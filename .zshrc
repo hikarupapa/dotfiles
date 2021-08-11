@@ -231,7 +231,7 @@ esac
 #userresources=$HOME/.Xresources
 
 setopt correct
-export PATH="~/lbin:$PATH"
+#export PATH="~/lbin:$PATH"
 export XDG_CONFIG_HOME=~/.config
 ##For color less
 #export LESS=-R
