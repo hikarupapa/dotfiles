@@ -84,3 +84,6 @@ function! LightlineMode()
 endfunction
 call lightline#coc#register()
 '''
+
+[[plugins]]
+repo = 'vobornik/vim-mql4'

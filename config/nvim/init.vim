@@ -334,3 +334,5 @@ if exists('+termguicolors')
   let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
 endif
+" For coc-dictionary for mql4
+autocmd BufNewFile,BufReadPost *.mq[h4] setlocal dictionary+=~/.vim/dic/mql4.dict
