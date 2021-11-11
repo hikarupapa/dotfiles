@@ -76,10 +76,10 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias la='ls -la'
-alias mountDONGOD='sudo mount -t drvfs -o username=hikaru,password=HIK1pika,uid=hikaru,gid=users \\\\DONGO2020\\Download /mnt/DONGO/Download'
-alias mountDONGOM='sudo mount -t drvfs -o username=hikaru,password=HIK1pika,uid=hikaru,gid=users \\\\DONGO2020\\Multimedia /mnt/DONGO/Multimedia'
-alias mountDONGOP='sudo mount -t drvfs -o username=hikaru,password=HIK1pika,uid=hikaru,gid=users \\\\DONGO2020\\Public /mnt/DONGO/Public'
-alias mountDONGOW='sudo mount -t drvfs -o username=hikaru,password=HIK1pika,uid=hikaru,gid=users \\\\DONGO2020\\Web /mnt/DONGO/Web'
+#alias mountDONGOD='sudo mount -t drvfs -o username=hikaru,password=HIK1pika,uid=hikaru,gid=users \\\\DONGO2020\\Download /mnt/DONGO/Download'
+#alias mountDONGOM='sudo mount -t drvfs -o username=hikaru,password=HIK1pika,uid=hikaru,gid=users \\\\DONGO2020\\Multimedia /mnt/DONGO/Multimedia'
+#alias mountDONGOP='sudo mount -t drvfs -o username=hikaru,password=HIK1pika,uid=hikaru,gid=users \\\\DONGO2020\\Public /mnt/DONGO/Public'
+#alias mountDONGOW='sudo mount -t drvfs -o username=hikaru,password=HIK1pika,uid=hikaru,gid=users \\\\DONGO2020\\Web /mnt/DONGO/Web'
 # alias rsyncHOME='rsync -arv --exclude='.cache' --exclude='Downloads/WORK/' --exclude='Downloads/GET/' --delete /home/hikaru/ hikaru@DONGO2020:/share/Download/_tmp/hikaru/'
 alias cdd='cd ~/Documents'
 alias cdp='cd ~/Public'
@@ -95,7 +95,7 @@ compinit -d
 colors
 
 # enable substitution for prompt
-#setopt prompt_subst
+setopt prompt_subst
 
 # Prompt (on left side) similar to default bash prompt, or redhat zsh prompt with colors
  #PROMPT="%(!.%{$fg[red]%}[%n@%m %1~]%{$reset_color%}# .%{$fg[green]%}[%n@%m %1~]%{$reset_color%}$ "
@@ -218,7 +218,8 @@ case $(basename "$(cat "/proc/$PPID/comm")") in
 #  		ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 #     ;;
   *)
-        RPROMPT='$(git_prompt_string)'
+#        RPROMPT='$(git_prompt_string)'
+        RPROMPT=''
 		# Use autosuggestion
 		source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 		ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
@@ -230,18 +231,18 @@ esac
 #
 #userresources=$HOME/.Xresources
 
-setopt correct
+#setopt correct
 #export PATH="~/lbin:$PATH"
 export XDG_CONFIG_HOME=~/.config
 ##For color less
-#export LESS=-R
-#export LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink
-#export LESS_TERMCAP_md=$'\E[1;36m'     # begin bold
-#export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
-#export LESS_TERMCAP_so=$'\E[01;44;33m' # begin reverse video
-#export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
-#export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
-#export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
+export LESS=-R
+export LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink
+export LESS_TERMCAP_md=$'\E[1;36m'     # begin bold
+export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
+export LESS_TERMCAP_so=$'\E[01;44;33m' # begin reverse video
+export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
+export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
+export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 # and so on
 #export LESSOPEN='| /usr/bin/src-hilite-lesspipe.sh %s'
 
@@ -260,7 +261,13 @@ export PATH="$PATH:$GEM_HOME/bin"
 # %F{1}%#%f "
 #RPROMPT="[%~] %F{3}%T%f"
 #PROMPT2="%{${fg[blue]}%}%_> %{${reset_color}%}"
-#
+
+#autoload -Uz vcs_info
+#setopt prompt_subst
+#zstyle ':vcs_info:*' formats '[%F{green}%b%f]'
+#zstyle ':vcs_info:*' actionformats '[%F{green}%b%f(%F{red}%a%f)]'
+#precmd() { vcs_info }
+
 ## prompt001
 #precmd() {
 #printf "\n"
@@ -276,11 +283,13 @@ export PATH="$PATH:$GEM_HOME/bin"
 #   
 #     echo "$color$face$reset"
 #   }
-#   
+##   
 #   # %F{色} 任意のテキスト %fで、%fまで色を変更できる
-#   PROMPT='%F{007}%*%f %F{blue}%n%f%F{007}@%f%F{blue}%M%f %F{001}[%~]%f${vcs_info_msg_0_}
-#   $(status_code) < %F{003}%#%f '
-#
+##   PROMPT='%F{007}%*%f %F{blue}%n%f%F{007}@%f%F{blue}%M%f %F{001}[%~]%f${vcs_info_msg_0_}
+##   $(status_code) < %F{003}%#%f '
+#PROMPT='%F{007}%*%f %F{blue}%n%f%F{007}@%f%F{blue}%M%f %F{001}[%~]%f $(git_prompt_string)
+#$(status_code) < %F{003}%#%f '
+
 ## prompt002
 # autoload -Uz vcs_info
 # setopt prompt_subst
